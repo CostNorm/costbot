@@ -3,6 +3,11 @@ from datetime import datetime, timedelta
 import pandas as pd
 import json
 import urllib3
+import os
+from dotenv import load_dotenv
+
+# 환경 변수 로드
+load_dotenv()
 
 # Cost Explorer 클라이언트 생성
 ce = boto3.client("ce", region_name="us-east-1")
@@ -10,10 +15,8 @@ ce = boto3.client("ce", region_name="us-east-1")
 # S3 클라이언트 생성
 s3_client = boto3.client("s3")
 
-# Slack Webhook URL (너의 Webhook URL로 교체)
-SLACK_WEBHOOK_URL = (
-    "https://hooks.slack.com/services/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"
-)
+# Slack Webhook URL을 환경 변수에서 가져오기
+SLACK_WEBHOOK_URL = os.environ.get("SLACK_WEBHOOK_URL")
 
 
 def send_slack_message(text):
