@@ -140,10 +140,9 @@ def get_service_operation_cost():
     thread_ts = send_slack_message(message)
 
     if thread_ts:
-        # 상위 30개 리소스를 스레드로 전송
-        top30 = df_sorted.head(30)
-        thread_message = "💡 Top 30 resources:\n"
-        for index, row in top30.iterrows():
+        # 모든 리소스 비용 정보를 스레드로 전송
+        thread_message = "💡 All resources cost details:\n"
+        for index, row in df_sorted.iterrows():
             thread_message += f"- Service: {row['Service']}, Operation: {row['Operation']}, Cost: ${row['Cost']:.2f}\n"
 
         send_slack_message(thread_message, thread_ts=thread_ts)
