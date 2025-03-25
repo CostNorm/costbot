@@ -32,3 +32,4 @@ var/
 node_modules/
 .vscode/
 .idea/ 
+.zip
